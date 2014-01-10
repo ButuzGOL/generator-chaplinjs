@@ -1,0 +1,11 @@
+{
+  "name": "<%= appTitle %> API",
+  "description": "",
+  "version": "0.0.1",
+  "logo": "",
+  "options": {
+    "outdir": "./docs",
+    "linkNatives": true,
+    "paths": "./src/app"
+  }
+}

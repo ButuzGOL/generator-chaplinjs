@@ -5,9 +5,8 @@ define([
   'chaplin',
 
   'views/base/form',
-  'models/user',
   'models/base/model'
-], function(expect, $, Chaplin, FormView, User, Model) {
+], function(expect, $, Chaplin, FormView, Model) {
   'use strict';
   
   describe('FormView', function() {
@@ -165,7 +164,7 @@ define([
     describe('#changedAttribute()', function() {
       it('should check validity', function() {
         var wasCalled = false,
-            user = new User();
+            user = new Model();
         
         user.on('change:test', function() {
           wasCalled = true;
@@ -208,7 +207,7 @@ define([
         $('[name=test]', formView.$el).trigger(event);
       });
       it('should set attribute to model', function(done) {
-        var user = new User();
+        var user = new Model();
         user.on('change:test', function() {
           user.dispose();
           done();

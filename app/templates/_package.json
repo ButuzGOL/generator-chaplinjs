@@ -4,8 +4,6 @@
   "author": "",
   "description": "",
   "homepage": "",
-  "repository": "https://github.com/<%= githubUser %>/<%= _.slugify(appName) %>",
-  "bugs": "https://github.com/<%= githubUser %>/<%= _.slugify(appName) %>/issues",
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-contrib-copy": "~0.4.1",

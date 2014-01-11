@@ -70,19 +70,6 @@ define([
     });
 
     describe('#urlParams()', function() {
-      context('when access token exists', function() {
-        it('should take it from mediator user', function() {
-          mediator.createUser();
-          mediator.user.set('accessToken', 'test');
-
-          expect(model.urlParams()).to.eql({
-            'access_token': mediator.user.get('accessToken')
-          });
-
-          mediator.removeUser();
-        });
-      });
-
       context('when access token not exists', function() {
         it('should return empty object', function() {
           expect(model.urlParams()).to.be.empty();

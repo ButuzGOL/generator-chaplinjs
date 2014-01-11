@@ -4,9 +4,8 @@ define([
   'underscore',
   'chaplin',
 
-  'models/user',
   'views/base/view'
-], function(expect, _, i18n, Chaplin, User, View) {
+], function(expect, _, Chaplin, View) {
   'use strict';
   
   describe('View', function() {
@@ -31,13 +30,6 @@ define([
     });
 
     describe('#getTemplateData()', function() {
-      it('should add user object if signed in', function() {
-        Chaplin.mediator.user = new User();
-        
-        expect(view.getTemplateData()).to.have.key('currentUser');
-        
-        Chaplin.mediator.user = null;
-      });
       it('should collect template data', function() {
         var object = Chaplin.View.prototype.getTemplateData();
 

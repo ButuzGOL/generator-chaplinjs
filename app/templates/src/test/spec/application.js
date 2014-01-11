@@ -5,13 +5,10 @@ define([
   'chaplin',
   'application',
   'config/application',
-  'config/backend',
-  'nprogress',
   'mediator',
   'lib/error-handler',
-  'i18n'
-], function(expect, _, $, Chaplin, Application, applicationConfig,
-  backendConfig, NProgress, mediator, ErrorHandler, i18n) {
+], function(expect, _, $, Chaplin, Application, applicationConfig, mediator,
+  ErrorHandler) {
   'use strict';
   
   describe('Application', function() {
@@ -32,10 +29,6 @@ define([
       beforeEach(function() {
         Chaplin.Application.prototype.start = function() {};
       });
-      it('should start loader', function() {
-        Application.prototype.start();
-        expect(NProgress.isStarted()).to.be(true);
-      });
       it('should call #initErrorHandler()', function(done) {
         var initErrorHandler = Application.prototype.initErrorHandler;
 
@@ -46,75 +39,6 @@ define([
         };
 
         Application.prototype.start();
-      });
-      describe('#initConfig()', function() {
-        it('should call #initConfig()', function(done) {
-          var initConfig = Application.prototype.initConfig;
-
-          Application.prototype.initConfig = function() {
-            Application.prototype.initConfig = initConfig;
-            done();
-            return $.get('/');
-          };
-
-          Application.prototype.start();
-        });
-        context('when done', function() {
-          it('should call #initAuth() with callback', function(done) {
-            var initAuth = Application.prototype.initAuth;
-
-            Application.prototype.initAuth = function(callback) {
-              expect(callback).to.be.a('function');
-              Application.prototype.initAuth = initAuth;
-              done();
-            };
-
-            Application.prototype.start();
-          });
-          it('should call #initLocale() with callback', function(done) {
-            var initLocale = Application.prototype.initLocale;
-
-            Application.prototype.initLocale = function(callback) {
-              expect(callback).to.be.a('function');
-              Application.prototype.initLocale = initLocale;
-              done();
-            };
-
-            Application.prototype.start();
-          });
-        });
-        context('when fail', function() {
-          var initConfig = Application.prototype.initConfig;
-
-          beforeEach(function() {
-            Application.prototype.initConfig = function() {
-              return $.get(applicationConfig.api.root + '/notfound');
-            };
-          });
-          afterEach(function() {
-            Application.prototype.initConfig = initConfig;
-          });
-
-          it('should set mediator application error true', function(done) {
-            $(document).ajaxError(function() {
-              expect(mediator.applicationError).to.be(true);
-
-              $(document).off('ajaxError');
-              done();
-            });
-
-            Application.prototype.start();
-          });
-          it('should call parent', function(done) {
-            Chaplin.Application.prototype.start = function() {
-              Chaplin.Application.prototype.start = function() {};
-
-              done();
-            };
-
-            Application.prototype.start();
-          });
-        });
       });
     });
     describe('#initErrorHandler()', function() {
@@ -166,214 +90,6 @@ define([
         });
       });
     });
-    describe('#initAuth()', function() {
-      afterEach(function() {
-        window.localStorage.removeItem('accessToken');
-        Chaplin.mediator.unsubscribe('signinStatus');
-      });
-      it('should if access token call callback', function(done) {
-        var wasCalled = false,
-            signin = mediator.signin;
-
-        mediator.signin = function() {
-          wasCalled = true;
-        };
-
-        window.localStorage.removeItem('accessToken');
-        
-        Application.prototype.initAuth(function() {
-          done();
-        });
-        
-        expect(wasCalled).to.be(false);
-        mediator.signin = signin;
-      });
-      describe('subscribe to signinStatus and call callback', function() {
-        var accessToken = 'test';
-
-        beforeEach(function() {
-          window.localStorage.setItem('accessToken', accessToken);
-        });
-        it('should subscribe to event', function() {
-          Application.prototype.initAuth(function() {});
-          expect(Chaplin.mediator._events.signinStatus).to.have.
-            length(1);
-        });
-        context('when callback', function() {
-          it('should unsubscribe to event', function() {
-            Application.prototype.initAuth(function() {});
-            Chaplin.mediator.publish('signinStatus');
-            expect(Chaplin.mediator._events.signinStatus).to.be(undefined);
-          });
-          it('should call callback', function(done) {
-            Application.prototype.initAuth(done);
-            Chaplin.mediator.publish('signinStatus');
-          });
-        });
-      });
-      it('should call mediator #signin() with access token', function(done) {
-        var accessToken = 'test',
-            signin = mediator.signin;
-
-        window.localStorage.setItem('accessToken', accessToken);
-
-        mediator.signin = function(accessToken1) {
-          expect(accessToken1).to.be(accessToken);
-          mediator.signin = signin;
-          done();
-        };
-
-        Application.prototype.initAuth(function() {});
-        Chaplin.mediator.publish('signinStatus');
-      });
-    });
-    describe('#initConfig()', function() {
-      describe('calling for config from backend', function() {
-        it('should call api root + /config', function(done) {
-          var ajax = Application.prototype.initConfig();
-          ajax.abort();
-          ajax.always(function() {
-            expect(this.url).to.be(applicationConfig.api.root + '/config');
-            done();
-          });
-        });
-        context('when done', function() {
-          it('should extend backend config with exists', function(done) {
-            var originBackendConfig = _.clone(backendConfig, true),
-                ajax = Application.prototype.initConfig();
-
-            ajax.done(function(response) {
-              expect(_.extend(originBackendConfig, response)).to.
-                eql(backendConfig);
-
-              done();
-            });
-          });
-        });
-      });
-    });
-    describe('#initLocale()', function() {
-      beforeEach(function() {
-        applicationConfig.locale = 'en';
-      });
-      describe('require localization', function() {
-        it('should require local localization based on config', function() {
-          Application.prototype.initLocale(function() {});
-          expect(require('json!config/locales/' + applicationConfig.locale +
-            '.json')).to.be.an('object');
-        });
-        context('when done', function() {
-          describe('call backend for localization', function() {
-            it('should call backend for localization', function(done) {
-              $(document).ajaxComplete(function(event, jqxhr, settings) {
-                expect(settings.url).to.be(applicationConfig.api.root +
-                  '/locales/' + applicationConfig.locale);
-
-                $(document).off('ajaxComplete');
-
-                done();
-              });
-
-              Application.prototype.initLocale(function() {});
-            });
-            context('when done', function() {
-              it('should extend data', function() {
-                var data;
-                
-                Application.prototype.initLocale(function() {});
-                
-                data = require('json!config/locales/' +
-                  applicationConfig.locale + '.json');
-                
-                $.get(applicationConfig.api.root + '/locales/' +
-                  applicationConfig.locale).done(
-                  function(response) {
-                    expect(i18n.options.resStore.en.translation).to.
-                      eql(_.extend({}, data, response));
-                  }
-                );
-
-              });
-              it('should initialize language lib', function() {
-                Application.prototype.initLocale(function() {});
-                expect(i18n.options.resStore).to.be.an('object');
-              });
-              it('should call callback', function(done) {
-                Application.prototype.initLocale(done);
-              });
-            });
-            context('when fail', function() {
-              it('should send exists data', function(done) {
-                var apiRoot = applicationConfig.api.root,
-                    data,
-                    callback;
-
-                callback = function() {
-                  expect(i18n.options.resStore.en.translation).to.eql(data);
-              
-                  applicationConfig.api.root = apiRoot;
-                  
-                  done();
-                };
-
-                applicationConfig.api.root = 'http://localhost:30001';
-
-                Application.prototype.initLocale(callback);
-
-                data = require('json!config/locales/' +
-                  applicationConfig.locale + '.json');
-
-              });
-            });
-          });
-        });
-        context('when fail', function() {
-          describe('call backend for localization', function() {
-            context('when done', function() {
-              it('should not extend data', function(done) {
-                var locale = applicationConfig.locale;
-
-                applicationConfig.locale = 'test';
-
-                Application.prototype.initLocale(function() {});
-                applicationConfig.locale = locale;
-
-                $(document).ajaxSuccess(function(event, jqxhr) {
-                  expect(i18n.options.resStore.en.translation).to.
-                    eql(jqxhr.responseJSON);
-              
-                  $(document).off('ajaxSuccess');
-
-                  done();
-                });
-              });
-            });
-            context('when fail', function() {
-              it('should require default english localization', function(done) {
-                var locale = applicationConfig.locale,
-                    data,
-                    callback;
-
-                callback = function() {
-                  expect(i18n.options.resStore.en.translation).to.
-                    eql(data);
-
-                  applicationConfig.locale = locale;
-                
-                  done();
-                };
-
-                applicationConfig.locale = 'test';
-                
-                Application.prototype.initLocale(callback);
-                
-                data = require('json!config/locales/en.json');
-              });
-            });
-          });
-        });
-      });
-    });
     describe('#initLayout()', function() {
       it('should create layout with attributes', function() {
         var object = {
@@ -389,7 +105,6 @@ define([
       it('should set attributes', function() {
         Application.prototype.initMediator();
 
-        expect(mediator.user).to.be(null);
         expect(mediator.errorHandler).to.be(null);
         expect(mediator.applicationError).to.be(false);
       });

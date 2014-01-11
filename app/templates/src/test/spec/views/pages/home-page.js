@@ -3,10 +3,9 @@ define([
   'chaplin',
   'views/layout',
   'views/site',
-  'models/user',
   'views/base/page',
   'views/pages/home-page'
-], function(expect, Chaplin, Layout, SiteView, User, PageView,
+], function(expect, Chaplin, Layout, SiteView, PageView,
   PagesHomePageView) {
   'use strict';
   

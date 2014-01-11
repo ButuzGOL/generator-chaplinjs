@@ -38,16 +38,6 @@ define([
       });
     });
     describe('#render()', function() {
-      it('should render template', function(done) {
-        require(['views/base/view'], function() {
-          var template = applicationHelper.
-            render('shared/form-error-messages', { errorMessages: ['Test'] });
-          
-          expect(template).to.match(/Test/);
-      
-          done();
-        });
-      });
     });
   });
 });

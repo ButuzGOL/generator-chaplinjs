@@ -6,14 +6,11 @@
 define([
   'require',
   'underscore',
-  'i18n',
   'ejs',
   'chaplin',
   'mediator',
-  'helpers/application',
-  'helpers/sessions',
-  'text!views/templates/shared/form-error-messages.ejs'
-], function(require, _, i18n, ejs, Chaplin, mediator) {
+  'helpers/application'
+], function(require, _, ejs, Chaplin, mediator) {
   'use strict';
 
   /**

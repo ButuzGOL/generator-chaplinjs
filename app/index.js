@@ -1,15 +1,14 @@
 'use strict';
-var util = require('util');
-var path = require('path');
-var yeoman = require('yeoman-generator');
-
+var util = require('util'),
+    path = require('path'),
+    yeoman = require('yeoman-generator');
 
 var ChaplinjsGenerator = module.exports =
   function ChaplinjsGenerator(args, options) {
     yeoman.generators.Base.apply(this, arguments);
 
     this.on('end', function () {
-      this.installDependencies({ 
+      this.installDependencies({
         skipInstall: options['skip-install'],
         callback: function () {
           this.spawnCommand('grunt', ['prepare']);

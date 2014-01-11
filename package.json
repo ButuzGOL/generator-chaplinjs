@@ -1,15 +1,18 @@
 {
   "name": "generator-chaplinjs",
-  "version": "0.0.0",
-  "description": "A generator for Yeoman",
+  "version": "0.0.1",
+  "description": "A generator for Chaplin.js",
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "chaplinjs",
+    "backbone",
+    "scaffold",
+    "framework"
   ],
   "homepage": "https://github.com/ButuzGOL/generator-chaplinjs",
   "bugs": "https://github.com/ButuzGOL/generator-chaplinjs/issues",
   "author": {
-    "name": "",
-    "email": "",
+    "name": "ButuzGOL",
     "url": "https://github.com/ButuzGOL"
   },
   "main": "app/index.js",

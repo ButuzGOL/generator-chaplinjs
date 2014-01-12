@@ -1,11 +1,10 @@
 'use strict';
-var util = require('util');
-var yeoman = require('yeoman-generator');
+var util = require('util'),
+    yeoman = require('yeoman-generator');
 
-var ControllerGenerator = module.exports =
-  function ControllerGenerator() {
-    yeoman.generators.NamedBase.apply(this, arguments);
-  };
+var ControllerGenerator = module.exports = function ControllerGenerator() {
+  yeoman.generators.NamedBase.apply(this, arguments);
+};
 
 util.inherits(ControllerGenerator, yeoman.generators.NamedBase);
 

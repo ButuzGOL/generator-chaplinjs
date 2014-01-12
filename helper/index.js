@@ -2,10 +2,9 @@
 var util = require('util'),
     yeoman = require('yeoman-generator');
 
-var HelperGenerator = module.exports =
-  function HelperGenerator() {
-    yeoman.generators.NamedBase.apply(this, arguments);
-  };
+var HelperGenerator = module.exports = function HelperGenerator() {
+  yeoman.generators.NamedBase.apply(this, arguments);
+};
 
 util.inherits(HelperGenerator, yeoman.generators.NamedBase);
 

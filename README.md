@@ -1,46 +1,49 @@
-# generator-chaplinjs [![Build Status](https://secure.travis-ci.org/ButuzGOL/generator-chaplinjs.png?branch=master)](https://travis-ci.org/ButuzGOL/generator-chaplinjs)
+# Chaplin.js generator [![Build Status](https://secure.travis-ci.org/ButuzGOL/generator-chaplinjs.png?branch=master)](http://travis-ci.org/ButuzGOL/generator-chaplinjs) [![Coverage Status](https://coveralls.io/repos/ButuzGOL/generator-chaplinjs/badge.png?branch=master)](https://coveralls.io/r/ButuzGOL/generator-chaplinjs?branch=master)
 
-A generator for [Yeoman](http://yeoman.io).
+Maintainer: [ButuzGOL](https://github.com/ButuzGOL)
 
+A Chaplin.js generator for Yeoman that provides a functional boilerplate Backbone app out of the box. You also get access to a number of sub-generators which can be used to easily create individual models, views, collections and so on.
 
-## Getting Started
+## Usage
 
-### What is Yeoman?
+Install: `npm install -g generator-chaplinjs`
 
-Trick question. It's not a thing. It's this guy:
-
-![](http://i.imgur.com/JHaAlBJ.png)
-
-Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
-
-Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
-
+Make a new directory and `cd` into it:
 ```
-$ npm install -g yo
+mkdir my-new-project && cd $_
 ```
 
-### Yeoman Generators
-
-Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
-
-To install generator-chaplinjs from npm, run:
-
+Run `yo chaplinjs`, optionally passing an app name:
 ```
-$ npm install -g generator-chaplinjs
+yo chaplinjs [app-name]
 ```
 
-Finally, initiate the generator:
+## Generators
+
+Available generators:
+
+- chaplinjs:model
+- chaplinjs:view
+- chaplinjs:collection
+
+## Typical workflow
 
 ```
-$ yo chaplinjs
+yo chaplinjs # generates your application base and build workflow
+yo chaplinjs:model user
+yo chaplinjs:collection users
+yo chaplinjs:view users
+grunt server
 ```
 
-### Getting To Know Yeoman
+## Todo
 
-Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
-
-If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
-
+- Controller actions
+- Controller add to routes
+- View extend CollectionView
+- View with template and style
+- Tests
+- README
 
 ## License
 

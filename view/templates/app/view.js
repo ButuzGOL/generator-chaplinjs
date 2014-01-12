@@ -1,22 +1,22 @@
-/**
- * <%= _.capitalize(name.replace(/sub\//g, '').replace(/\//g, ' ')) %> view module
+/**<% var classifyName = _.classify(name.replace(/sub\//g, '')), capitalizeName = _.capitalize(name.replace(/sub\//g, '').replace(/\//g, ' ')), extend = ((extend) ? extend : ''), classifyExtend = _.classify(extend); %>
+ * <%= capitalizeName %><%= (extend) ? ' ' + extend : '' %> view module
  *
  * @module views/<%= name %>
  */
 define([
-  'views/base/view'
-], function(View) {
+  'views/base/<%= (extend) ? extend : 'view' %>'
+], function(<%= _.classify(extend) %>View) {
   'use strict';
 
   /**
-   * <%= _.capitalize(name.replace(/sub\//g, '').replace(/\//g, ' ')) %> view class
+   * <%= capitalizeName %><%= (extend) ? ' ' + extend : '' %> view class
    *
-   * @class <%= _.classify(name.replace(/sub\//g, '')) %>View
+   * @class <%= classifyName %><%= classifyExtend %>View
    * @constructor
-   * @extends View
+   * @extends <%= classifyExtend %>View
    */
-  var <%= _.classify(name.replace(/sub\//g, '')) %>View = View.extend({
+  var <%= classifyName %><%= classifyExtend %>View = <%= classifyExtend %>View.extend({
   });
   
-  return <%= _.classify(name.replace(/sub\//g, '')) %>View;
+  return <%= classifyName %><%= classifyExtend %>View;
 });

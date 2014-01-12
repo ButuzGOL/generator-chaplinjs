@@ -2,6 +2,6 @@ define([
 ], function() {
   'use strict';
   
-  describe('<%= _.capitalize(name) %>Controller', function() {
+  describe('<%= _.classify(name) %>Controller', function() {
   });
 });

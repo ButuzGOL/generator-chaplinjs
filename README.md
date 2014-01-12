@@ -40,7 +40,6 @@ grunt server
 
 - Controller actions
 - Controller add to routes
-- View extend CollectionView
 - View with template and style
 - Tests
 - README

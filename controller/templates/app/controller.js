@@ -1,5 +1,5 @@
-/**
- * <%= _.capitalize(name) %> controller module
+/**<% var capitalizeName = _.capitalize(name), classifyName = _.classify(name); %>
+ * <%= capitalizeName %> controller module
  *
  * @module controllers/<%= name %>
  */
@@ -9,14 +9,14 @@ define([
   'use strict';
 
   /**
-   * <%= _.capitalize(name) %> controller class
+   * <%= capitalizeName %> controller class
    *
-   * @class <%= _.capitalize(name) %>Controller
+   * @class <%= classifyName %>Controller
    * @constructor
    * @extends Controller
    */
-  var <%= _.capitalize(name) %>Controller = Controller.extend({
+  var <%= classifyName %>Controller = Controller.extend({
   });
   
-  return <%= _.capitalize(name) %>Controller;
+  return <%= classifyName %>Controller;
 });

@@ -5,22 +5,23 @@ var util = require('util'),
 var ViewGenerator = module.exports = function ViewGenerator() {
   yeoman.generators.NamedBase.apply(this, arguments);
 
-  this.argument('extend', {
+  this.argument('path', {
     type: String,
     required: false
   });
 
-  this.option('full');
+  this.argument('extend', {
+    type: String,
+    required: false
+  });
 };
 
 util.inherits(ViewGenerator, yeoman.generators.NamedBase);
 
 ViewGenerator.prototype.files = function files() {
-  this.template('app/view.js', 'src/app/views/' + this.name + '.js');
-  this.copy('test/spec/view.js',
-    'src/test/spec/views/' + this.name + '.js');
+  var path = this.path ? (this.path + '/') : '';
   
-  if (this.options['create-all']) {
-    
-  }
+  this.template('app/view.js', 'src/app/views/' + path + this.name + '.js');
+  this.template('test/spec/view.js',
+    'src/test/spec/views/' + path + this.name + '.js');
 };

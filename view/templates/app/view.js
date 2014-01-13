@@ -1,7 +1,7 @@
-/**<% var classifyName = _.classify(name.replace(/sub\//g, '')), capitalizeName = _.capitalize(name.replace(/sub\//g, '').replace(/\//g, ' ')), extend = ((extend) ? extend : ''), classifyExtend = _.classify(extend); %>
+/**<% var fullName = (path ? (path.replace(/sub\//g, '') + '/') : '') + name, classifyName = _.classify(fullName), capitalizeName = _.capitalize(fullName.replace(/\//g, ' ')), extend = ((extend) ? extend : ''), classifyExtend = _.classify(extend); %>
  * <%= capitalizeName %><%= (extend) ? ' ' + extend : '' %> view module
  *
- * @module views/<%= name %>
+ * @module views/<%= fullName %>
  */
 define([
   'views/base/<%= (extend) ? extend : 'view' %>'

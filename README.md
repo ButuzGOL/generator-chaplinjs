@@ -1,8 +1,6 @@
 # Chaplin.js generator [![Build Status](https://secure.travis-ci.org/ButuzGOL/generator-chaplinjs.png?branch=master)](http://travis-ci.org/ButuzGOL/generator-chaplinjs) [![Coverage Status](https://coveralls.io/repos/ButuzGOL/generator-chaplinjs/badge.png?branch=master)](https://coveralls.io/r/ButuzGOL/generator-chaplinjs?branch=master)
 
-Maintainer: [ButuzGOL](https://github.com/ButuzGOL)
-
-A Chaplin.js generator for Yeoman that provides a functional boilerplate Backbone app out of the box. You also get access to a number of sub-generators which can be used to easily create individual models, views, collections and so on.
+A Chaplin.js generator for Yeoman that provides a functional boilerplate Chaplin app out of the box. You also get access to a number of sub-generators which can be used to easily create individual models, views, collections and so on.
 
 ## Usage
 

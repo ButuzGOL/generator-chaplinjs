@@ -1,7 +1,7 @@
-define([
+define([<% var fullName = (path ? (path.replace(/sub\//g, '') + '/') : '') + name; %>
 ], function() {
   'use strict';
   
-  describe('<%= _.classify(name.replace(/sub\//g, '')) %>View', function() {
+  describe('<%= _.classify(fullName) %>View', function() {
   });
 });

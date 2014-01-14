@@ -1,3 +1,5 @@
+/*jshint quotmark:true */
+
 'use strict';
 var util = require('util'),
     yeoman = require('yeoman-generator');
@@ -15,7 +17,15 @@ var StyleGenerator = module.exports = function StyleGenerator() {
 util.inherits(StyleGenerator, yeoman.generators.NamedBase);
 
 StyleGenerator.prototype.files = function files() {
-  var path = this.path ? (this.path + '/') : '';
+  var basePath = 'src/app/views/styles/',
+      path = this.path ? (this.path + '/') : '',
+      baseFilePath = basePath + 'application.styl',
+      baseFile = this.readFileAsString(baseFilePath),
+      insert = "@import '" + path + this.name + "'";
   
-  this.copy('style.styl', 'src/app/views/styles/' + path + this.name + '.styl');
+  if (baseFile.indexOf(insert) === -1) {
+    this.write(baseFilePath, baseFile + '\n' + insert);
+  }
+  
+  this.copy('style.styl', basePath + path + this.name + '.styl');
 };

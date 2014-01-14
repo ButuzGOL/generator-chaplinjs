@@ -1,4 +1,4 @@
-/*jshint quotmark:true */
+/*jshint quotmark:false */
 
 'use strict';
 var util = require('util'),

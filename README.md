@@ -36,7 +36,6 @@ grunt server
 
 ## Todo
 
-- Controller actions
 - Controller add to routes
 - View with template and style
 - Tests

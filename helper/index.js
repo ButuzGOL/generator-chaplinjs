@@ -9,7 +9,7 @@ var HelperGenerator = module.exports = function HelperGenerator() {
 util.inherits(HelperGenerator, yeoman.generators.NamedBase);
 
 HelperGenerator.prototype.files = function files() {
-  this.copy('app/helper.js', 'src/app/helpers/' + this.name + '.js');
-  this.copy('test/spec/helper.js',
+  this.template('app/helper.js', 'src/app/helpers/' + this.name + '.js');
+  this.template('test/spec/helper.js',
     'src/test/spec/helpers/' + this.name + '.js');
 };

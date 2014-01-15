@@ -36,7 +36,6 @@ grunt server
 
 ## Todo
 
-- Tests
 - README
 
 ## License

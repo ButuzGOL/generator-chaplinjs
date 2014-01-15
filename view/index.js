@@ -13,8 +13,31 @@ var ViewGenerator = module.exports = function ViewGenerator() {
     type: String
   });
 
+  this.option('all');
+
   this.path = this.options.path;
   this.extend = this.options.extend;
+  this.all = this.options.all;
+
+  if (this.all) {
+    this.hookFor('chaplinjs:template', {
+      args: [this.name + ((this.extend) ? '-' + this.extend : '')],
+      options: {
+        options: {
+          'path': this.path
+        }
+      }
+    });
+
+    this.hookFor('chaplinjs:style', {
+      args: [this.name + ((this.extend) ? '-' + this.extend : '')],
+      options: {
+        options: {
+          'path': this.path
+        }
+      }
+    });
+  }
 };
 
 util.inherits(ViewGenerator, yeoman.generators.NamedBase);

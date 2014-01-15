@@ -1,4 +1,4 @@
-# Chaplin.js generator [![Build Status](https://travis-ci.org/ButuzGOL/generator-chaplinjs.png?branch=master)](https://travis-ci.org/ButuzGOL/generator-chaplinjs) [![Coverage Status](https://coveralls.io/repos/ButuzGOL/generator-chaplinjs/badge.png)](https://coveralls.io/r/ButuzGOL/generator-chaplinjs)
+# Chaplin.js generator [![Build Status](https://travis-ci.org/ButuzGOL/generator-chaplinjs.png?branch=master)](https://travis-ci.org/ButuzGOL/generator-chaplinjs)
 
 A Chaplin.js generator for Yeoman that provides a functional boilerplate Chaplin app out of the box. You also get access to a number of sub-generators which can be used to easily create individual models, views, collections and so on.
 
@@ -20,23 +20,28 @@ yo chaplinjs [app-name]
 
 Available generators:
 
-- chaplinjs:model
-- chaplinjs:view
-- chaplinjs:collection
+- chaplinjs:all name action
+- chaplinjs:controller name [actions...]
+- chaplinjs:helper name
+- chaplinjs:collection name [--model=model-name]
+- chaplinjs:model name
+- chaplinjs:view name [--path=path] [--extend=extend-name] [--all]
+- chaplinjs:template name [--path=path]
+- chaplinjs:style name [--path=path]
 
 ## Typical workflow
 
 ```
 yo chaplinjs # generates your application base and build workflow
+yo chaplinjs:controller users index
+yo chaplinjs:helper users
+yo chaplinjs:collection users --model=user
 yo chaplinjs:model user
-yo chaplinjs:collection users
-yo chaplinjs:view users
+yo chaplinjs:view index --path=users --extend=page
+yo chaplinjs:template index-page --path=users
+yo chaplinjs:style index-page --path=users
 grunt server
 ```
-
-## Todo
-
-- README
 
 ## License
 

@@ -1,8 +1,5 @@
-language: node_js
-node_js:
-  - '0.8'
-  - '0.10'
-before_install:
-  - currentfolder=${PWD##*/}
-  - if [ "$currentfolder" != 'generator-chaplinjs' ]; then cd .. && eval "mv $currentfolder generator-chaplinjs" && cd generator-chaplinjs; fi
-
+ language: node_js
+ node_js:
+   - "0.10"
+   - "0.8"
+   - "0.6"

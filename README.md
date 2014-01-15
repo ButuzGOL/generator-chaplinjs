@@ -36,8 +36,6 @@ grunt server
 
 ## Todo
 
-- View + tempate + style
-- all
 - Tests
 - README
 

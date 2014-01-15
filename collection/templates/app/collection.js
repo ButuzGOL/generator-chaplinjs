@@ -4,9 +4,9 @@
  * @module models/<%= name %>
  */
 define([
-  'models/base/model',
+  'models/base/<%= (model) ? model : 'model' %>',
   'models/base/collection'
-], function(Model, Collection) {
+], function(<%= (model) ? _.classify(model) : 'Model' %>, Collection) {
   'use strict';
 
   /**
@@ -17,7 +17,7 @@ define([
    * @extends Collection
    */
   var <%= classifyName %> = Collection.extend({
-    model: Model
+    model: <%= (model) ? _.classify(model) : 'Model' %>
   });
   
   return <%= classifyName %>;

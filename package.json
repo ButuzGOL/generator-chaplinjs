@@ -26,7 +26,8 @@
   "dependencies": {
     "yeoman-generator": "~0.16.0",
     "lodash": "~2.4.1",
-    "underscore.inflections": "~0.2.1"
+    "underscore.inflections": "~0.2.1",
+    "coveralls": "~2.6.1"
   },
   "devDependencies": {
     "mocha": "~1.14.0"

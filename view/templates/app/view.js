@@ -4,7 +4,7 @@
  * @module views/<%= ((path) ? path + '/' : '') + name + ((extend) ? '-' + extend : '') %>
  */
 define([
-  'views/base/<%= (extend) ? extend : 'view' %>'<% if (all) { %>,<%= '\n\t' %>'text!views/templates/<%= ((path) ? path + '/' : '') + name + ((extend) ? '-' + extend : '') %>.ejs'<% } %>
+  'views/base/<%= (extend) ? extend : 'view' %>'<% if (all) { %>,<%= '\n  ' %>'text!views/templates/<%= ((path) ? path + '/' : '') + name + ((extend) ? '-' + extend : '') %>.ejs'<% } %>
 ], function(<%= _.classify(extend) %>View<% if (all) { %>, template<% } %>) {
   'use strict';
 
@@ -15,7 +15,7 @@ define([
    * @constructor
    * @extends <%= classifyExtend %>View
    */
-  var <%= classifyName %><%= classifyExtend %>View = <%= classifyExtend %>View.extend({<% if (all) { %><%= '\n\t\t' %>/**<%= '\n\t\t ' %>* @property template<%= '\n\t\t ' %>* @type {string}<%= '\n\t\t ' %>*/<%= '\n\t\t' %>tempate: template<% } %>
+  var <%= classifyName %><%= classifyExtend %>View = <%= classifyExtend %>View.extend({<% if (all) { %><%= '\n    ' %>/**<%= '\n     ' %>* @property template<%= '\n     ' %>* @type {string}<%= '\n     ' %>*/<%= '\n    ' %>template: template<% } %>
   });
   
   return <%= classifyName %><%= classifyExtend %>View;

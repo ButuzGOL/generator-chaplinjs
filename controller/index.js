@@ -40,7 +40,7 @@ ControllerGenerator.prototype.files = function files() {
 
       routesFile = [
         routesFile.slice(0, position),
-        '\n\t\t' + insert.join('\n\t\t'),
+        '\n    ' + insert.join('\n    '),
         routesFile.slice(position)
       ].join('');
 

@@ -43,6 +43,52 @@ yo chaplinjs:style index-page --path=users
 grunt server
 ```
 
+## File structure
+
+```
+|--src/
+   |--app/
+      |--controllers/
+         |--base/
+      |--models/
+         |--base/
+      |--views/
+         |--base/
+         |--styles/
+         |--templates/
+      |--helpers/
+      |--config/
+         |--routes.js
+         |--application.js
+      |--assets/
+      |--lib/
+         |--utils.js
+         |--error-handler.js
+      |--application.js
+      |--mediator.js
+      |--main.js
+      |--initialize.js
+   |--test/
+      |--automation
+      |--benchmark
+      |--spec
+         |--controllers/
+         |--models/
+         |--helpers/
+         |--lib/
+         |--views/
+         |--index.html
+         |--coverage.html
+         |--helper.js
+         |--initialize.js
+   |--vendor/
+   |--index.html
+|--Gruntfile.js
+|--bower.json
+|--yuidoc.json
+|--package.json
+```
+
 ## License
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)

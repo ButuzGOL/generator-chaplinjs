@@ -1,4 +1,4 @@
-# Chaplin.js generator [![Build Status](https://travis-ci.org/ButuzGOL/generator-chaplinjs.png?branch=master)](https://travis-ci.org/ButuzGOL/generator-chaplinjs)
+# Chaplin.js generator (JavaScript, Stylus, Ejs) [![Build Status](https://travis-ci.org/ButuzGOL/generator-chaplinjs.png?branch=master)](https://travis-ci.org/ButuzGOL/generator-chaplinjs)
 
 A Chaplin.js generator for Yeoman that provides a functional boilerplate Chaplin app out of the box. You also get access to a number of sub-generators which can be used to easily create individual models, views, collections and so on.
 
